@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Universal.Torrent.Bencoding
+namespace TorrentUWP.BEncoding
 {
     /// <summary>
     /// Class representing a BEncoded list

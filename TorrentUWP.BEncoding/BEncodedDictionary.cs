@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace Universal.Torrent.Bencoding
+namespace TorrentUWP.BEncoding
 {
     /// <summary>
     /// Class representing a BEncoded Dictionary

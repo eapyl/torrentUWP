@@ -114,7 +114,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TorrentUWP.BEncoding\TorrentUWP.BEncoding.csproj">
-      <Project>{2d9cdb43-cf1a-4d28-8e51-7fb913fa27e4}</Project>
+      <Project>{fc92c45b-955b-4052-98e7-b6fc6d13f698}</Project>
       <Name>TorrentUWP.BEncoding</Name>
     </ProjectReference>
   </ItemGroup>

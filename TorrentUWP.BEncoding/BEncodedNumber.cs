@@ -1,6 +1,6 @@
 using System;
 
-namespace Universal.Torrent.Bencoding
+namespace TorrentUWP.BEncoding
 {
     /// <summary>
     /// Class representing a BEncoded number

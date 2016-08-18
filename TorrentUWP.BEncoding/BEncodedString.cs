@@ -1,23 +1,9 @@
-// // BEncodedString.cs // Authors: Alan McGovern alan.mcgovern@gmail.com // Copyright (C) 2006 Alan
-// McGovern // Permission is hereby granted, free of charge, to any person obtaining a copy of this
-// software and associated documentation files (the "Software"), to deal in the Software without
-// restriction, including without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the
-// Software is furnished to do so, subject to the following conditions: // The above copyright notice
-// and this permission notice shall be included in all copies or substantial portions of the
-// Software. // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE
-// AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT
-// OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
 using System;
 using System.Linq;
 using System.Text;
-using Universal.Torrent.Client.Messages;
-using Universal.Torrent.Common;
+using TorrentUWP.BEncoding;
 
-namespace Universal.Torrent.Bencoding
+namespace TorrentUWP.BEncoding
 {
     /// <summary>
     /// Class representing a BEncoded string
@@ -40,38 +26,21 @@ namespace Universal.Torrent.Bencoding
         /// </summary>
         public byte[] TextBytes { get; private set; }
 
-        #region Constructors
-
-        /// <summary>
-        /// Create a new BEncodedString using UTF8 encoding
-        /// </summary>
         public BEncodedString()
             : this(new byte[0])
         {
         }
 
-        /// <summary>
-        /// Create a new BEncodedString using UTF8 encoding
-        /// </summary>
-        /// <param name="value"></param>
         public BEncodedString(char[] value)
             : this(Encoding.UTF8.GetBytes(value))
         {
         }
 
-        /// <summary>
-        /// Create a new BEncodedString using UTF8 encoding
-        /// </summary>
-        /// <param name="value">Initial value for the string</param>
         public BEncodedString(string value)
             : this(Encoding.UTF8.GetBytes(value))
         {
         }
 
-        /// <summary>
-        /// Create a new BEncodedString using UTF8 encoding
-        /// </summary>
-        /// <param name="value"></param>
         public BEncodedString(byte[] value)
         {
             TextBytes = value;
@@ -91,8 +60,6 @@ namespace Universal.Torrent.Bencoding
         {
             return new BEncodedString(value);
         }
-
-        #endregion Constructors
 
         public int CompareTo(object other)
         {
@@ -126,9 +93,9 @@ namespace Universal.Torrent.Bencoding
         public override int Encode(byte[] buffer, int offset)
         {
             var written = offset;
-            written += Message.WriteAscii(buffer, written, TextBytes.Length.ToString());
-            written += Message.WriteAscii(buffer, written, ":");
-            written += Message.Write(buffer, written, TextBytes);
+            written += AsciiHelper.WriteAscii(buffer, written, TextBytes.Length.ToString());
+            written += AsciiHelper.WriteAscii(buffer, written, ":");
+            written += AsciiHelper.Write(buffer, written, TextBytes);
             return written - offset;
         }
 
@@ -168,6 +135,7 @@ namespace Universal.Torrent.Bencoding
 
             return prefix + TextBytes.Length;
         }
+
 
         public override string ToString()
         {
