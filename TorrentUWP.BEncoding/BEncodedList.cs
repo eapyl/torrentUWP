@@ -168,13 +168,13 @@ namespace TorrentUWP.BEncoding
         internal override void DecodeInternal(RawReader reader)
         {
             if (reader.ReadByte() != 'l') // Remove the leading 'l'
-                throw new BEncodingException("Invalid data found. Aborting");
+                throw new BEncodingException("BEncoded List should be started by 'l'");
 
             while ((reader.PeekByte() != -1) && (reader.PeekByte() != 'e'))
                 _list.Add(Decode(reader));
 
             if (reader.ReadByte() != 'e') // Remove the trailing 'e'
-                throw new BEncodingException("Invalid data found. Aborting");
+                throw new BEncodingException("BEncoded List should be started by 'e'");
         }
     }
 }
